@@ -16,6 +16,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Cryptonian"
         tools:targetApi="31">
+        <receiver
+            android:name=".broadcastReceivers.LowBatteryReceiver"
+            android:enabled="true"/>
         <activity
             android:name=".activities.MainActivity"
             android:exported="true">
