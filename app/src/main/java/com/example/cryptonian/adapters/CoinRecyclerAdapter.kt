@@ -23,12 +23,12 @@ class CoinRecyclerAdapter(private val coins: List<Coin>): RecyclerView.Adapter<C
 
         fun onBind(coin: Coin) {
             Picasso.get().load(coin.image).into(icon)
-            name.text = coin.id
+            name.text = coin.id.replaceFirstChar(Char::titlecase)
             symbol.text = coin.symbol
             price.text = "Current price: ${coin.price} USD"
-            high.text = coin.high.toString()
-            low.text = coin.low.toString()
-            rank.text = coin.rank.toString()
+            high.text = "⬆ ${coin.high.toString()}"
+            low.text = "⬇ ${coin.low.toString()}"
+            rank.text = "Rank: ${coin.rank.toString()}"
             this.coin = coin
         }
     }

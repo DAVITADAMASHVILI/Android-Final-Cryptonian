@@ -19,6 +19,6 @@ class App: Application() {
             applicationContext,
             AppDatabase::class.java,
             "USERS"
-        ).build()
+        ).allowMainThreadQueries().build()
     }
 }
