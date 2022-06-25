@@ -37,6 +37,15 @@ class ConverterFragment: Fragment(R.layout.fragment_converter) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        binding.button.setOnClickListener {
+            calculate()
+        }
+        var selectedCoinRank = ConverterFragmentArgs.fromBundle(requireArguments()).rank
+        setupSpinner(selectedCoinRank)
+    }
+
+    private fun setupSpinner(rank: Int = 1) {
         try {
             val coins = App.instance.database.getCoinDao().getAllCoins()
             val adapter = ArrayAdapter(context!!,
@@ -47,18 +56,11 @@ class ConverterFragment: Fragment(R.layout.fragment_converter) {
             binding.spinner.onItemSelectedListener = object: AdapterView.OnItemSelectedListener {
                 override fun onItemSelected(p0: AdapterView<*>?, p1: View?, index: Int, p3: Long) {
                     selectedCoin = coins[index]
-                    binding.textInputLayout.hint = "Enter ${selectedCoin.symbol}"
+                    binding.textInputLayout.hint = "Enter ${selectedCoin.id}(${selectedCoin.symbol})"
                 }
-
-                override fun onNothingSelected(p0: AdapterView<*>?) {
-                    Toast.makeText(
-                        context,
-                        "Please select crypto currency",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
-
+                override fun onNothingSelected(p0: AdapterView<*>?) { return }
             }
+            binding.spinner.setSelection(rank - 1)
         } catch (error: RuntimeException) {
             Toast.makeText(
                 context,
@@ -66,9 +68,6 @@ class ConverterFragment: Fragment(R.layout.fragment_converter) {
                 Toast.LENGTH_SHORT
             ).show()
             Log.i("FETCH_COINS", error.message.toString())
-        }
-        binding.button.setOnClickListener {
-            calculate()
         }
     }
 
