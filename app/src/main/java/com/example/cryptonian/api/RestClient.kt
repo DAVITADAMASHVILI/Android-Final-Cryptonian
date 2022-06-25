@@ -22,6 +22,6 @@ object RestClient {
         return retrofit.create(serviceClass)
     }
 
-    val reqResApi: CoinGeckoService
+    val coinGeckoApi: CoinGeckoService
         get() = getService(CoinGeckoService::class.java)
 }

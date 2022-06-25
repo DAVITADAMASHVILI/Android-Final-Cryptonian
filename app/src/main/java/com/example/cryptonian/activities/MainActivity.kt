@@ -26,7 +26,7 @@ class MainActivity : AppCompatActivity(), LowBatteryListener {
         setContentView(view)
 
         NotificationUtil.createNotificationChannel(this)
-        registerAirplaneModeReceiver()
+        registerLowBatteryReceiver()
 
         navigationController = findNavController(R.id.navHostFragment)
         setupActionBarWithNavController(navigationController, AppBarConfiguration(
@@ -42,7 +42,7 @@ class MainActivity : AppCompatActivity(), LowBatteryListener {
         NotificationUtil.showReminderNotification(this)
     }
 
-    private fun registerAirplaneModeReceiver() {
+    private fun registerLowBatteryReceiver() {
         val lowBatteryReceiver = LowBatteryReceiver()
         lowBatteryReceiver.lowBatteryListener = this
         IntentFilter(Intent.ACTION_BATTERY_LOW).also {

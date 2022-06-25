@@ -50,7 +50,7 @@ class HomeFragment: Fragment(R.layout.fragment_home) {
     private fun fetchCoins() {
         binding.progressBar.visibility = View.VISIBLE
         App.instance.database.getCoinDao().deleteAll()
-        RestClient.reqResApi.getCoins().enqueue(object : Callback<List<Coin>?> {
+        RestClient.coinGeckoApi.getCoins().enqueue(object : Callback<List<Coin>?> {
             override fun onResponse(call: Call<List<Coin>?>, response: Response<List<Coin>?>) {
                 if (response.isSuccessful) {
                     val coins = response.body()?: listOf()
