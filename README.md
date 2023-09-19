@@ -55,4 +55,3 @@ kapt "androidx.room:room-compiler:2.4.2"
 
 ### Contributors
 	- Davit Adamashvili | daviti.adamashvili.1@btu.edu.ge
-    - Beka Baghaturia | beka.baghaturia.1@btu.edu.ge
